@@ -49,7 +49,14 @@ def get_user_words() -> List[str]:
     for Windows.
     Note: the user presses the enter key after entering each word.
     """
-    pass
+    result = []
+    while True:
+        word = str(input("Введіть слово: "))
+        if word == '':
+            break
+        result += [word]
+    return result
+
 
 
 def get_pure_user_words(user_words: List[str], letters: List[str], words_from_dict: List[str]) -> List[str]:
