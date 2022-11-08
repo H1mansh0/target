@@ -14,7 +14,7 @@ def generate_grid() -> List[List[str]]:
     return result
 
 
-def get_words(f: str, letters: List[str]) -> List[str]:
+def get_words(filename: str, letters: List[str]) -> List[str]:
     """
     Reads the file f. Checks the words with rules and returns a list of words.
     """
