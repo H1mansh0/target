@@ -83,4 +83,20 @@ def get_pure_user_words(user_words: List[str], letters: List[str], words_from_di
 
 
 def results():
-    pass
+    """
+    Function whic writes result of game in file
+    'result.txt'
+    """
+    letters = []
+    for item in generate_grid():
+        for ele in item:
+            letters += [ele.lower()]
+    words = get_words('en.txt', letters)
+    user_words = get_user_words()
+    with open('result.txt', 'w', encoding='utf-8') as file:
+        file.write(f"{len(list(set(user_words)&set(words)))}\n")
+        file.write(f"{words}\n")
+        file.write(f"{list(set(words) - set(user_words))}\n")
+        file.write(f"{user_words}\n")
+        file.write(f"{list(set(user_words) - set(ele[:-1] for ele in get_words('en.txt', [])))}")
+        
