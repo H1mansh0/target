@@ -1,6 +1,9 @@
+"""
+Program which reacreates game 'target'
+"""
 from typing import List
+import copy, venv
 from secrets import choice
-import copy
 
 def generate_grid() -> List[List[str]]:
     """
@@ -40,12 +43,10 @@ def get_words(filename: str, letters: List[str]) -> List[str]:
             result += [item]
     return result
 
-
-
 def get_user_words() -> List[str]:
     """
     Gets words from user input and returns a list with these words.
-    Usage: enter a word or press ctrl+d to finish for *nix or Ctrl-Z+Enter 
+    Usage: enter a word or press ctrl+d to finish for *nix or Ctrl-Z+Enter
     for Windows.
     Note: the user presses the enter key after entering each word.
     """
@@ -58,13 +59,16 @@ def get_user_words() -> List[str]:
     return result
 
 
-
-def get_pure_user_words(user_words: List[str], letters: List[str], words_from_dict: List[str]) -> List[str]:
+def get_pure_user_words(
+    user_words: List[str], letters: List[str], words_from_dict: List[str]) -> List[str]:
     """
     (list, list, list) -> list
-
     Checks user words with the rules and returns list of those words
     that are not in dictionary.
+    >>> get_pure_user_words(['ham', 'apple', 'pepe', 'loop', 'lopj'], \
+['a', 'l' 'e', 'p', 'p', 'o', 'o', 'j', 'e'], \
+['apple', 'pepe', 'loop', 'ham'])
+    ['lopj']
     """
     result = []
     for item in user_words:
@@ -79,8 +83,6 @@ def get_pure_user_words(user_words: List[str], letters: List[str], words_from_di
         if item not in words_from_dict:
             result += [item]
     return result
-
-
 
 def results():
     """
@@ -99,4 +101,9 @@ def results():
         file.write(f"{list(set(words) - set(user_words))}\n")
         file.write(f"{user_words}\n")
         file.write(f"{list(set(user_words) - set(ele[:-1] for ele in get_words('en.txt', [])))}")
-        
+
+
+
+if __name__ == '__main__':
+    import doctest
+    print(doctest.testmod())
