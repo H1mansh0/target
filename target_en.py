@@ -1,11 +1,16 @@
 from typing import List
+from secrets import choice
 
 def generate_grid() -> List[List[str]]:
     """
     Generates list of lists of letters - i.e. grid for the game.
     e.g. [['I', 'G', 'E'], ['P', 'I', 'S'], ['W', 'M', 'G']]
     """
-    pass
+    result = []
+    alfa = [chr(i) for i in range(65, 91)]
+    while len(result) <3:
+        result += [[choice(alfa) for i in range(3)]]
+    return result
 
 
 def get_words(f: str, letters: List[str]) -> List[str]:
